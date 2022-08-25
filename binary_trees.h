@@ -7,6 +7,21 @@
 #include <string.h>
 
 /**
+ * enum avl_state_n - mneumonic for unique states when balancing AVL trees
+ * @AVL_RETURN: return to caller
+ * @AVL_CREATE: create and insert a node
+ * @AVL_CHILD_L: coming from child's left subtree
+ * @AVL_CHILD_R: coming from child's right subtree
+ */
+typedef enum avl_state_n
+{
+	AVL_RETURN = 0,
+	AVL_LCHILD,
+	AVL_RCHILD,
+	AVL_CREATE
+} avl_state_t;
+
+/**
  * struct binary_tree_s - Binary tree node
  *
  * @n: Integer stored in the node
@@ -14,18 +29,31 @@
  * @left: Pointer to the left child node
  * @right: Pointer to the right child node
  */
-struct binary_tree_s
+typedef struct binary_tree_s
 {
 	int n;
 	struct binary_tree_s *parent;
 	struct binary_tree_s *left;
 	struct binary_tree_s *right;
-};
+} binary_tree_t;
 
 typedef struct binary_tree_s binary_tree_t;
 typedef struct binary_tree_s bst_t;
+typedef struct binary_tree_s bt_t;
 typedef struct binary_tree_s avl_t;
 typedef struct binary_tree_s heap_t;
+
+/**
+ * struct queue_s - a queue node
+ * @data: a pointer to the queued item
+ * @next: a pointer to the next item in the queue
+ */
+typedef struct queue_s
+{
+	struct binary_tree_s *data;
+	struct queue_s *next;
+} queue_t;
+
 
 void binary_tree_print(const binary_tree_t *);
 binary_tree_t *binary_tree_node(binary_tree_t *parent, int value);
